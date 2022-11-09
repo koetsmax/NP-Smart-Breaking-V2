@@ -1,2 +1,3 @@
 # NP-Smart-Breaking-Project
-## Inhoud
+
+Dit is onze git repo voor ons school-project.
