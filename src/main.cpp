@@ -1,62 +1,79 @@
 #include <Arduino.h>
 #include <mat.h>
 
+// creeer constant variables
 float pi = 3.1415926535;
 int count = 0;
 float diavr = 0.25;
 int rotation = 0;
 
-// time
-int ctime = millis();
+// creer constant interval voor de tijd
 int interval = 10;
-// Tracks the time since last event fired
+// Tracks the time for how long the program has been running for
 unsigned long previousMillis = 0;
 
-// sensor
-int sensorVoor = (32);
-int valA = 0;
+// Datapin waar de voorsensor is aangesloten (channel A)
+int sensorVoorChannelA = 32;
+int sensorVoorChannelB = 25;
+// De huidige waarde van de sensor (channel A)
+int valSensorVoor = 0;
 
 void setup()
 {
     Serial.begin(115200);
 }
 
-int snelheid(int dis, int currentMillis)
+int snelheid(int distance, int currentMillis)
 {
-    int speed = (dis / currentMillis);
+    int speed = (distance / currentMillis);
     return speed;
 }
 
 void loop()
 {
-    int movement = analogRead(sensorVoor);
-    int dis = rotation * (diavr * pi);
-    // Get snapshot of time
-    unsigned long currentMillis = millis();
+    // int checkValueA = analogRead(sensorVoorChannelA);
+    int checkValueB = analogRead(sensorVoorChannelB);
 
-    valA = analogRead(sensorVoor);
-    if (valA > 1)
+    if (checkValueB > 1)
     {
-        valA = 1;
+        Serial.println(checkValueB);
+        delay(50);
     }
-    Serial.println(valA);
-
-    if (valA > 1)
+    else
     {
-        count++;
+        Serial.println("Het is nul");
+        delay(50);
     }
+    // int distance = rotation * (diavr * pi);
+    // // Get snapshot of time
+    // // unsigned long currentMillis = millis();
 
-    if (count == 3)
-    {
-        count = 0;
-        rotation++;
-    }
+    // valSensorVoor = analogRead(sensorVoor);
+    // // zet de waardevan de voor sensor naar 1 als de waarde groter is dan 1
+    // if (valSensorVoor > 1)
+    // {
+    //     Serial.println("waarde is hoger dan " + String(valSensorVoor));
+    //     // valSensorVoor = 1;
+    //     count++;
+    // }
+    // // Serial.println(valSensorVoor);
 
-    int dis = rotation * (diavr * pi);
+    // // als de count groter is dan 3
+    // if (count == 3)
+    // {
+    //     count = 0;
+    //     rotation++;
+    //     // Serial.println("rotation");
+    // }
 
-    // How much time has passed, accounting for rollover with subtraction!
-    if ((unsigned long)(currentMillis - previousMillis) >= interval)
-    {
-        previousMillis = currentMillis;
-    }
+    // // How much time has passed, accounting for rollover with subtraction
+    // // if the time since the last loop is greater than the interval
+
+    // // if (currentMillis - previousMillis >= interval)
+    // // {
+    // //     // save the last time you blinked the LED
+    // //     previousMillis = currentMillis;
+    // //     Serial.println("distance: " + distance);
+    // //     Serial.println("snelheid: " + snelheid(distance, currentMillis));
+    // // }
 }
