@@ -12,10 +12,10 @@ int interval = 5000;
 // Tracks the time for how long the program has been running for
 unsigned long currentMillis = 0;
 unsigned long previousMillis = 0;
-// Datapin waar de voorsensor is aangesloten (channel A)
+// Datapin waar de voorsensor is aangesloten
 int sensorVoorChannelA = 32;
 int sensorVoorChannelB = 25;
-// De huidige waarde van de sensor (channel A)
+// De huidige waarde van de sensor
 int valSensorVoor = 0;
 
 int check_if_driving()
