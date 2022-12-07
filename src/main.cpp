@@ -66,8 +66,8 @@ void loop()
         // Serial.println("rotation");
     }
 
-    How much time has passed, accounting for rollover with subtraction
-    if the time since the last loop is greater than the interval
+    // How much time has passed, accounting for rollover with subtraction
+    // if the time since the last loop is greater than the interval
 
     if (currentMillis - previousMillis >= interval)
     {
