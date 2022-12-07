@@ -31,7 +31,7 @@ int snelheid(int distance, int currentMillis)
 
 void loop()
 {
-    // int checkValueA = analogRead(sensorVoorChannelA);
+    int checkValueA = analogRead(sensorVoorChannelA);
     int checkValueB = analogRead(sensorVoorChannelB);
 
     if (checkValueB > 1)
@@ -44,36 +44,36 @@ void loop()
         Serial.println("Het is nul");
         delay(50);
     }
-    // int distance = rotation * (diavr * pi);
-    // // Get snapshot of time
-    // // unsigned long currentMillis = millis();
+    int distance = rotation * (diavr * pi);
+    // Get snapshot of time
+    // unsigned long currentMillis = millis();
 
-    // valSensorVoor = analogRead(sensorVoor);
-    // // zet de waardevan de voor sensor naar 1 als de waarde groter is dan 1
-    // if (valSensorVoor > 1)
-    // {
-    //     Serial.println("waarde is hoger dan " + String(valSensorVoor));
-    //     // valSensorVoor = 1;
-    //     count++;
-    // }
-    // // Serial.println(valSensorVoor);
+    valSensorVoor = analogRead(sensorVoor);
+    // zet de waardevan de voor sensor naar 1 als de waarde groter is dan 1
+    if (valSensorVoor > 1)
+    {
+        Serial.println("waarde is hoger dan " + String(valSensorVoor));
+        // valSensorVoor = 1;
+        count++;
+    }
+    // Serial.println(valSensorVoor);
 
-    // // als de count groter is dan 3
-    // if (count == 3)
-    // {
-    //     count = 0;
-    //     rotation++;
-    //     // Serial.println("rotation");
-    // }
+    // als de count groter is dan 3
+    if (count == 3)
+    {
+        count = 0;
+        rotation++;
+        // Serial.println("rotation");
+    }
 
-    // // How much time has passed, accounting for rollover with subtraction
-    // // if the time since the last loop is greater than the interval
+    How much time has passed, accounting for rollover with subtraction
+    if the time since the last loop is greater than the interval
 
-    // // if (currentMillis - previousMillis >= interval)
-    // // {
-    // //     // save the last time you blinked the LED
-    // //     previousMillis = currentMillis;
-    // //     Serial.println("distance: " + distance);
-    // //     Serial.println("snelheid: " + snelheid(distance, currentMillis));
-    // // }
+    if (currentMillis - previousMillis >= interval)
+    {
+        // save the last time you blinked the LED
+        previousMillis = currentMillis;
+        Serial.println("distance: " + distance);
+        Serial.println("snelheid: " + snelheid(distance, currentMillis));
+    }
 }
