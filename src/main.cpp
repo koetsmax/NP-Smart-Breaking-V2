@@ -32,39 +32,33 @@ int snelheid(int distance, int currentMillis)
 void loop()
 {
     int checkValueA = analogRead(sensorVoorChannelA);
-    int checkValueB = analogRead(sensorVoorChannelB);
+    // int checkValueB = analogRead(sensorVoorChannelB);
 
-    if (checkValueB > 1)
+    //digital omzetten 
+    // als de waarde groter is dan 1 zet de waarde naar 1 anders naar 0
+    if (checkValueA > 1)
     {
-        Serial.println(checkValueB);
-        delay(50);
+        checkValueA = 1;
     }
     else
     {
-        Serial.println("Het is nul");
-        delay(50);
+        checkValueA = 0;
     }
-    int distance = rotation * (diavr * pi);
-    // Get snapshot of time
-    // unsigned long currentMillis = millis();
 
-    valSensorVoor = analogRead(sensorVoor);
-    // zet de waardevan de voor sensor naar 1 als de waarde groter is dan 1
-    if (valSensorVoor > 1)
-    {
-        Serial.println("waarde is hoger dan " + String(valSensorVoor));
-        // valSensorVoor = 1;
-        count++;
-    }
-    // Serial.println(valSensorVoor);
-
-    // als de count groter is dan 3
+    // 1 rotatie is voltooid
     if (count == 3)
     {
         count = 0;
         rotation++;
-        // Serial.println("rotation");
+    } else {
+        count++;
     }
+
+    
+    int distance = rotation * (diavr * pi);
+    // Get snapshot of time
+        unsigned long currentMillis = millis();
+
 
     // How much time has passed, accounting for rollover with subtraction
     // if the time since the last loop is greater than the interval
