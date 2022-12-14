@@ -20,7 +20,7 @@ int valSensorVoor = 0;
 
 int check_if_driving()
 {
-    // check if 5 minutes have passed without a change in the value
+    // check if 5 seconds have passed without a change in the value
     if (currentMillis - previousMillis >= interval)
     {
         previousMillis = currentMillis;
