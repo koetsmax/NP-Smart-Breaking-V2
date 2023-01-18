@@ -14,7 +14,7 @@ unsigned long previousMillis = 0;
 
 // Datapin waar de voorsensor is aangesloten (channel A)
 int sensorVoorChannelA = 35;
-// int sensorVoorChannelB = 25;
+int sensorVoorChannelB = 25;
 // De huidige waarde van de sensor (channel A)
 
 
@@ -23,51 +23,58 @@ void setup()
     Serial.begin(115200);
 }
 
-int snelheid(int distance, int currentMillis)
-{
-    int speed = (distance / currentMillis);
-    return speed;
-}
+// int snelheid(int distance, int currentMillis)
+// {
+//     int speed = (distance / currentMillis);
+//     return speed;
+// }
 
 void loop()
 {
     int checkValueA = analogRead(sensorVoorChannelA);
+    int checkValueB = analogRead(sensorVoorChannelB);
+    Serial.print("checkValueA =");
+    Serial.print(checkValueA);
+    Serial.print(" en checkValueB =");
+    Serial.println(checkValueB);
+    delay(200);
+ 
     // int checkValueB = analogRead(sensorVoorChannelB);
  
     // digital omzetten 
     // als de waarde groter is dan 1 zet de waarde naar 1 anders naar 0
-    if (checkValueA > 1)
-    {
-        checkValueA = 1;
-    }
+    // if (checkValueA > 1)
+    // {
+    //     checkValueA = 1;
+    // }
+    // Serial.print("Sensor waarde is")
     // else
     // {
     //     checkValueA = 0;
     // }
 
-    int previousValue = checkValueA;
-    // get new value here
-    // assume it is read from some device or sensor
+    // int previousValue = checkValueA;
 
-    if (previousValue == 0)
-    {
-        // 1 rotatie is voltooid
-        if (count == 3)
-        {
-            count = 0;
-            Serial.println("rondje gemaakt");
-            Serial.print("count: ");
-            Serial.println(count);
-            delay(1000);
-        }
-        else
-        {
-            count++;
-            Serial.print("count: ");
-            Serial.println(count);
-            delay(1000);
-        }
-    }
+
+    // if (previousValue == 0)
+    // {
+    //     // 1 rotatie is voltooid
+    //     if (count == 3)
+    //     {
+    //         count = 0;
+    //         Serial.println("rondje gemaakt");
+    //         Serial.print("count: ");
+    //         Serial.println(count);
+    //         delay(1000);
+    //     }
+    //     else
+    //     {
+    //         count++;
+    //         Serial.print("count: ");
+    //         Serial.println(count);
+    //         delay(1000);
+    //     }
+    // }
     // Serial.println("hallo");
 
     // Serial.println(checkValueA);
