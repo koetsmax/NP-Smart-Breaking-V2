@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <mat.h>
 
-// creeer constant variables
+// creeer cons.0dretant variables
 float pi = 3.1415926535;
 int count = 0;
 float diavr = 0.25;
