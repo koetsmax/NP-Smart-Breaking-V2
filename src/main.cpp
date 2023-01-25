@@ -5,12 +5,15 @@ float pi = 3.1415926535;
 int count = 0;
 float diavr = 0.25;
 int rotation = 0;
-
+bool pietje = false;
 // creer constant interval voor de tijd
 int interval = 5000;
 // Tracks the time for how long the program has been running for
 unsigned long currentMillis = 0;
 unsigned long previousMillis = 0;
+
+int PreviousValueA = 0;
+int PreviousValueB = 0;
 
 // Datapin waar de voorsensor is aangesloten (channel A)
 int sensorVoorChannelA = A0;
@@ -34,11 +37,46 @@ void loop()
     int checkValueB = analogRead(sensorVoorChannelB);
     if (checkValueA && checkValueB > 20)
     {
-        Serial.println("vooruit rondje gemaakt");
-        count++;
-        Serial.print("count: ");
-        Serial.println(count);
+        Serial.print("checkValueA =");
+        Serial.println(checkValueA);
+        Serial.print(" en checkValueB =");
+        Serial.println(checkValueB);
+        if (PreviousValueA != checkValueA)
+        {
+            if (PreviousValueB != checkValueB)
+            {
+                pietje = true;
+            }
+        }
     }
+
+    if (pietje == true)
+    {
+        Serial.println("vooruit half rondje gemaakt");
+        count++;
+        if (count == 2)
+        {
+            unsigned long startmills = millis();
+            rotation++;
+            Serial.print("rotation: ");
+            Serial.println(rotation / 2);
+            // Serial.print("checkValueA: ");
+            // Serial.println(checkValueA);
+            // Serial.print("checkValueB: ");
+            // Serial.println(checkValueB);
+            // Serial.print("PreviousValueA: ");
+            // Serial.println(PreviousValueA);
+            // Serial.print("PreviousValueB: ");
+            // Serial.println(PreviousValueB);
+            // delay(15);
+            unsigned long endmills = millis();
+            Serial.print("time: ");
+            Serial.println(endmills - startmills);
+            pietje = false;
+            count = 0;
+        }
+    }
+
     // Serial.print("checkValueA =");
     // Serial.print(checkValueA);
     // Serial.print(" en checkValueB =");
