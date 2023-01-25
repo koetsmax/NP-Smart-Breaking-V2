@@ -30,6 +30,11 @@ void setup()
 //     int speed = (distance / currentMillis);
 //     return speed;
 // }
+// int snelheid(int distance, int currentMillis)
+// {
+//     int speed = (distance / currentMillis);
+//     return speed;
+// }
 
 void loop()
 {
