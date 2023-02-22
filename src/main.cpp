@@ -6,6 +6,7 @@ int count = 0;
 float diavr = 0.25;
 int rotation = 0;
 bool pietje = false;
+float distance = 0;
 // creer constant interval voor de tijd
 int interval = 5000;
 // Tracks the time for how long the program has been running for
@@ -77,6 +78,9 @@ void loop()
             unsigned long endmills = millis();
             Serial.print("time: ");
             Serial.println(endmills - startmills);
+            float distance = rotation * (diavr * pi);
+            Serial.print("distance in meters: ");
+            Serial.println(distance);
             pietje = false;
             count = 0;
         }
